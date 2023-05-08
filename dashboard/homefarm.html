@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./app/style.css">
+    <title>HomeFarm</title>
+</head>
+<body>
+    <div class="controls">
+        <div class="indicators">
+            <div class="temperature-circular-progress">
+                <span class="temperature-progress-value">0°C</span>
+            </div>
+            <div class="ligth-circular-progress">
+                <span class="ligth-progress-value">0lum</span>
+            </div>
+        </div>
+        <div class="ligth">
+            <input id="checkboxLigth" class="checkbox" type="checkbox">
+            <label class="switch" for="checkboxLigth"></label>
+            <div class="light-bulb-container"></div>
+        </div>
+        <div class="slidecontainer">
+            <input class="slider" id="dimmer" type="range" min="0" max="9" value="50" >
+        </div>
+    </div>
+    <script src="./app/SetData.js"></script>
+    <script src="./app/GetThread.js"></script>
+</body>
+</html>

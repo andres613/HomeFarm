@@ -1,0 +1,70 @@
+version: '3.5'
+
+services:
+    node:
+        build:
+            context: .
+        container_name: ${COMPOSE_PROJECT_NAME}_fe
+        image: node:${NODE_VERSION:-latest}
+        volumes:
+            - ${ENVIRONMENT}/${FE_DIRECTORY}:/app
+        working_dir: /app
+        ports:
+            - ${FRONTEND_PORT:-3000}:3000
+        command: >
+            sh -c "npm install && npm start"
+        tty: true
+        depends_on:
+            - java 
+        networks:
+            - homefarm-network
+
+    java:
+        build:
+            context: .
+        container_name: ${COMPOSE_PROJECT_NAME}_be
+        image: maven:${MAVEN_VERSION}
+        devices:
+            - /dev/ttyUSB0:/dev/ttyUSB0:rwm
+        privileged: true
+        tty: true
+        volumes:
+            - /tmp/.X11-unix:/tmp/.X11-unix
+            - ${ENVIRONMENT}/:/${CONTAINER_HOME}/Documents/${SPRINGBOOT_CONTAINER_WORKSPACE}
+            - ${JAVA_ENVIRONMENT}/.m2:${CONTAINER_HOME}/.m2
+            - ${JAVA_ENVIRONMENT}/IDE_DIR_HOST:${CONTAINER_HOME}/ide_dir
+        ports:
+            - ${BACKEND_PORT:-8080}:8080
+        environment:
+            DISPLAY: $DISPLAY
+            SPRING_DATASOURCE_URL: jdbc:mysql://mariadb:${DATABASE_PORT:-3306}/${DATABASE_NAME}?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false
+            SPRING_DATASOURCE_USERNAME: root
+            SPRING_DATASOURCE_PASSWORD: password
+        command: sh -c "tail -f /dev/null"
+        depends_on:
+            - mariadb
+        networks:
+            - homefarm-network
+
+    mariadb:
+        container_name: ${COMPOSE_PROJECT_NAME}_db
+        image: mariadb:${MARIADB_VERSION:-latest}
+        volumes:
+            - ${ENVIRONMENT}/database:/var/lib/mysql
+        working_dir: /var/lib/mysql
+        ports:
+            - ${DATABASE_PORT:-3306}:3306
+        environment:
+            MYSQL_DATABASE: ${DATABASE_NAME:-DATABASE}
+            MYSQL_USER: ${DATABASE_USER:-root}
+            MYSQL_PASSWORD: ${DATABASE_PASSWORD:-password}
+            MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD:-password}
+        restart: always
+        networks:
+            - homefarm-network
+
+volumes:
+    db_data: {}
+
+networks:
+    homefarm-network:

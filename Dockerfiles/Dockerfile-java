@@ -1,0 +1,33 @@
+FROM ubuntu:20.04
+
+ENV UID=1000
+ENV GID=1000
+ENV USER="developer"
+ENV HOME=/home/${USER}
+ENV MAVEN_DIR=${HOME}/.m2
+ENV WORKSPACE=${HOME}/NetBeansProjects
+ENV JAVA_VERSION="17"
+ENV DEBIAN_FRONTEND="noninteractive"
+
+RUN apt-get update && apt-get install --yes --no-install-recommends \
+    vim openjdk-$JAVA_VERSION-jdk openjdk-$JAVA_VERSION-jre maven curl unzip git bash sudo cmake iputils-ping libgtk-3-dev clang pkg-config \
+    ninja-build xz-utils libglvnd0 ssh xauth x11-xserver-utils libpulse0 libxcomposite1 sed libgl1-mesa-glx \
+    && rm -rf /var/lib/{apt,dpkg,cache,log}
+    
+RUN groupadd --gid $GID $USER \
+    && useradd -m -N -s /bin/bash -u $UID --gid $GID $USER \
+    && usermod -aG plugdev $USER \
+    && usermod -aG sudo $USER && echo "$USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers \
+    && export uid=${UID} gid=${GID} \
+    && mkdir -m 700 -p ${MAVEN_DIR} ${WORKSPACE} $HOME/.netbeans \
+    && mkdir -p /etc/sudoers.d/ \
+    && chown -R ${USER}:${USER} ${HOME} \
+    && echo "$USER:x:${USER_ID}:${GROUP_ID}:${USER},,,:${HOME}:/bin/bash" >> /etc/passwd \
+    && echo "$USER:x:${USER_ID}:" >> /etc/group
+
+RUN cat /etc/os-release && java -version && mvn -version
+
+USER $USER
+WORKDIR /home/$USER
+
+COPY bashrc ${HOME}/.bashrc

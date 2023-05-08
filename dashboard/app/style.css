@@ -1,0 +1,173 @@
+:root {
+    --ligthOn: blue;
+    --ligthOff: black;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+}
+
+.indicators {
+    display: flex;
+    gap: 50px;
+    margin: 30px 0 100px 0;
+}
+
+.temperature-circular-progress {
+    position: relative;
+    height: 180px;
+    width: 180px;
+    border-radius: 50%;
+    background: conic-gradient(#7d2ae8 3.6deg, #ededed 0deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transform: rotate(270deg);
+}
+
+.temperature-circular-progress::before {
+    content: "";
+    position: absolute;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    background-color: black;
+}
+
+.temperature-progress-value {
+    position: relative;
+    font-size: 40px;
+    font-weight: 600;
+    color: blue;
+    transform: rotate(-270deg);
+}
+
+.ligth-circular-progress {
+    height: 180px;
+    width: 180px;
+    border-radius: 50%;
+    background: conic-gradient(green 3.6deg, #ededed 0deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transform: rotate(270deg);
+}
+
+.ligth-circular-progress::before {
+    content: "";
+    position: absolute;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    background-color: lightcyan;
+}
+
+.ligth-progress-value {
+    position: relative;
+    font-size: 40px;
+    font-weight: 600;
+    color: gray;
+    transform: rotate(-270deg);
+}
+
+.controls {
+    box-sizing: border-box;
+    position: relative;
+    /* height: 100px; */
+    width: 100%;
+    padding: 15px 0;
+    background-color: var(--headerBackground);
+
+    display: flex;
+    align-items: center;
+
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.ligth
+, .slidecontainer {
+    display: flex;
+    align-items: center;
+}
+
+.slidecontainer {
+    /* width: 100%; */
+    /* margin-top: 100px; */
+}
+
+.slider {
+    width: 200px;
+    height: 25px;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+#checkboxLigth {
+    display: none;
+}
+
+.checkbox:checked ~ .switch::before {
+    transform: translate(30px);
+}
+
+.switch {
+    display: block;
+    height: 30px;
+    width: 60px;
+    border-radius: 20px;
+    background: var(--ligthOff);
+
+    padding: 5px;
+    box-sizing: border-box;
+
+    cursor: pointer;
+    user-select: none;
+}
+
+.switch::before {
+    content: "";
+    display: block;
+    width: 20px;
+    height: 20px;
+    background: var(--ligthOn);
+    border-radius: 50%;
+
+    transition: .3s;
+    will-change: transform;
+}
+
+.is-ligth {
+    --ligthOn: #ECF0F1;
+    --ligthOff: #3498DB;
+}
+
+.light-bulb-container {
+    width: 30px;
+    height: 50px;
+    border-radius: 15px;
+    margin-left: 20px;
+    background-image: url('./image/off.png');
+    background-size: 25px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    transition: 1.5s;
+}
+
+.light-bulb-on {
+    transition: 1.5s;
+    background-image: url('./image/on.png');
+    cursor: pointer;
+    /* box-shadow: 1px 1px 50px cyan; */
+}

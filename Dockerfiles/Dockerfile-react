@@ -1,0 +1,19 @@
+FROM node:16-alpine
+
+ENV USER=nodeuser
+ENV HOME=/home/${USER}
+
+RUN adduser -D -g "" ${USER} \
+    && apk add bash curl jq \
+    && mkdir -p ${HOME}/${USER} /etc/sudoers.d/ \
+    && echo "${USER} ALL=(ALL:ALL) ALL" > /etc/sudoers.d/${USER} \
+    && npm install --unsafe-perm=true -g now \
+    && npm install -g http-server \
+    && chmod 777 -R /usr/local/lib/node_modules/ \
+    && chown -R 1000:1000 "/home/nodeuser/.npm" \
+    && chmod 777 -R /home/ \
+    && rm -rf /tmp/* /var/cache/apk/*
+
+WORKDIR ${HOME}/${USER}
+
+USER ${USER}

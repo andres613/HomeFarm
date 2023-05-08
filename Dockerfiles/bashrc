@@ -1,0 +1,41 @@
+#
+# ~/.bashrc
+#
+
+# Para agregar ScreenFetch al abrir la terminal, agregar "screenfetch" al final de /etc/bash.bashrc
+# If not running interactively, don't do anything
+alias ls='ls --color=auto'
+#PS1='${archlinux_chroot:+($archlinux_chroot)}\n\[\033[96m\]\u \[\033[34m\]\W\[\033[31m\]\n>> '
+PS1="\[\e[0;1m\]┌─( \[\e[92;1m\]\u\[\e[0;1m\] ) » { \[\e[34;1m\]\w\[\e[0;1m\] }\n└──┤ \[\e[0m\]"
+ 
+LS_COLORS="no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01"
+LS_COLORS="$LS_COLORS:cd=40;33;01:or=40;31;01:su=34;41:sg=30;43:tw=30;42"
+LS_COLORS="$LS_COLORS:ow=34;42:st=34;44:ex=01;32"
+# Archivos comprimidos
+LS_COLORS="$LS_COLORS:*.arj=0;91:*.bz2=0;91:*.gz=0;91:*.jar=01;31:*.lzh=0;91"
+LS_COLORS="$LS_COLORS::*.tar=0;91:*.taz=0;91:*.tgz=0;91:*.zip=0;91:*.z=0;91:*.Z=0;91"
+# Paquetes deb, rpm y pacman
+LS_COLORS="$LS_COLORS:*.deb=01;31:*.rpm=01;31:*.pkg.tar.xz=01;31"
+# Imagenes
+LS_COLORS="$LS_COLORS:*.bmp=0;35:*.gif=0;35:*.jpg=0;35:*.jpeg=0;35:*.pbm=0;35"
+LS_COLORS="$LS_COLORS:*.pgm=0;35:*.png=0;35:*.ppm=0;35:*.svg=0;35:*.tga=0;35"
+LS_COLORS="$LS_COLORS:*.tif=0;35:*.tiff=0;35:*.xbm=0;35:*.xpm=0;35"
+# Videos
+LS_COLORS="$LS_COLORS:*.avi=0;35:*.dl=0;35:*.fli=0;35:*.gl=0;35:*.mov=0;35"
+LS_COLORS="$LS_COLORS:*.mpg=0;35:*.mpeg=0;35:*.xcf=0;95:*.xwd=0;95"
+# Audio
+LS_COLORS="$LS_COLORS:*.flac=0;36:*.mp3=0;36:*.mpc=0;95:*.ogg=0;36:*.wav=0;36"
+# Logs
+LS_COLORS="$LS_COLORS:*.log=0;33"
+ 
+export LS_COLORS
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+#if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
+#    source /usr/share/powerline/bindings/bash/powerline.sh
+#fi
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
