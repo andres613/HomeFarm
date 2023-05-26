@@ -1,0 +1,110 @@
+.login {
+    margin: 0;
+    padding: 0;
+}
+
+.avatarImg {
+    position: absolute;
+    overflow: hidden;
+    top: calc(-80px/2);
+    left: 4px;
+    max-width: 380px;
+    height: auto;
+    margin: 10px 0 0 0;
+    filter: drop-shadow(10px 5px 5px #0A3143);
+}
+
+.blur {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 400px;
+    min-width: 350px;
+    min-height: 400px;
+    padding: 60px 40px;
+    box-sizing: border-box;
+    background: rgb(255 255 255 / 11%);
+    box-shadow: -1px 4px 28px 0px rgba(0,0,0,0.75);
+    border-radius: 10px;
+}
+
+.blur h2 {
+    margin: 10px 0;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Muli Bold";
+    text-shadow: 0 0 2px #000;
+}
+
+.blur label {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 10px #0A3143;
+}
+
+.blur input {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.blur input[type="password"], .blur input[type="email"] {
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    font-size: 16px;
+}
+
+.blur input[type="submit"] {
+    color: #FFF;
+    font-size: 16px;
+    background: #0A3143;
+    opacity: 0.8;
+    cursor: pointer;
+    border-radius: 5px;
+    outline: none;
+    padding: 10px 10px 10px 10px;
+}
+
+.blur input[type="submit"]:hover {
+    background: #276E90;
+    color: #EFEFEF;
+}
+
+.blur a {
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.email::placeholder, .pass::placeholder {
+    color: #0A3143;
+    opacity: 0.7;
+}
+
+.signup {
+    font-size: 13px;
+    /* color: black; */
+    color: #fff;
+    font-family: sans-serif;
+    text-align: center;
+}
+
+.signup .signupNow {
+    margin: 0 0 0 15px;
+    color: #0A3143;
+    text-shadow: 0 0 10px #fff;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.signup .signupNow:hover {
+    color: lightblue;
+    text-decoration: none;
+}

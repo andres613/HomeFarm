@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import styles from './PagesRouter.module.css';
 
+import { Login } from './components/Login'
 
 export const PagesRouter = () => {
 
@@ -13,6 +14,7 @@ export const PagesRouter = () => {
         <>
         <Router>
             <Routes>
+                <Route exact path="/" element={<Login />} />
             </Routes>
         </Router>
         </>
