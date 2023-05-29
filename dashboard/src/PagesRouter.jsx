@@ -1,10 +1,9 @@
-import React from 'react'
 import {
   BrowserRouter as Router,
   Routes,
   Route,
 } from "react-router-dom";
-import styles from './PagesRouter.module.css';
+import "./PagesRouter.module.css";
 
 import { Login } from './components/Login'
 
