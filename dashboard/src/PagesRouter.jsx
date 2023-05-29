@@ -6,6 +6,7 @@ import {
 import "./PagesRouter.module.css";
 
 import { Login } from './components/Login'
+import { Dashboard } from './components/Dashboard/Dashboard.jsx'
 
 export const PagesRouter = () => {
 
@@ -14,6 +15,9 @@ export const PagesRouter = () => {
         <Router>
             <Routes>
                 <Route exact path="/" element={<Login />} />
+                <Route exact path="/dashboard" element={
+                    <Dashboard title='HomeFarm'>Dashboard</Dashboard>
+                } />
             </Routes>
         </Router>
         </>
