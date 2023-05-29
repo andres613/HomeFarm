@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import styles from './Login.module.css';
@@ -17,7 +16,7 @@ export const Login = () => {
             <div className={styles.blur} >
                 <img
                     className={styles.avatarImg}
-                    src="./HOMEFARM2.png"
+                    src="./HOMEFARM.png"
                     alt="Login icon"
                 />
                 <h2>Login Form</h2>
@@ -53,7 +52,7 @@ export const Login = () => {
                     <div className={styles.remember} >
                          <div className={styles.signup} >
                             Don't have account?
-                            <Link className={styles.signupNow} to="#">
+                            <Link className={styles.signupNow} to="/signin">
                                 Signup Now
                             </Link>
                         </div>
