@@ -10,3 +10,12 @@ export async function get(email, pass){
             return false;
         });
 }
+
+export function apiResponse(){
+    return fetch("/fake_api.json")
+        .then(apiResponse => apiResponse.json())
+        .then(response => {
+            response = response.slice(1)
+            return response;
+        })
+}

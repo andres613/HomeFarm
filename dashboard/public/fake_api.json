@@ -5,5 +5,47 @@
         "id": 1,
         "name": "Andres Restrepo",
         "username": "arestrepo"
+    },
+    {
+        "spanishTitle": "Temperatura",
+        "englishTitle": "Temperature",
+        "lecture": {
+            "temperature": 25
+        }
+    },
+    {
+        "spanishTitle": "Intensidad de Luz",
+        "englishTitle": "Light Intensity",
+        "lecture": {
+            "lightIntensity": 125
+        }
+    },
+    {
+        "spanishTitle": "PH",
+        "englishTitle": "PH",
+        "lecture": {
+            "ph": 6.8
+        }
+    },
+    {
+        "spanishTitle": "Transparencia",
+        "englishTitle": "Transparency",
+        "lecture": {
+            "transparency": 46
+        }
+    },
+    {
+        "spanishTitle": "Oxigenación",
+        "englishTitle": "Oxygenation",
+        "lecture": {
+            "oxygenation": 6.1
+        }
+    },
+    {
+        "spanishTitle": "Alcalinidad",
+        "englishTitle": "Alkalinity",
+        "lecture": {
+            "alkalinity": 43
+        }
     }
 ]
