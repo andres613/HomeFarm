@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
+import { Monitor } from "../Monitor/Monitor.jsx";
 import Cookies from 'universal-cookie';
 import styles from './Dashboard.module.css'
 
@@ -37,7 +38,9 @@ export const Dashboard = ({ title, children }) => {
                 </Link>
             </header>
             <nav className={styles.navbar}>NAVBAR</nav>
-            <aside className={styles.sidebar}>SIDEBAR</aside>
+            <aside className={styles.sidebar}>
+                <Monitor />
+            </aside>
             <article className={styles.main}>MAIN</article>
             <footer className={styles.footer}>FOOTER</footer>
         </div>
