@@ -10,42 +10,48 @@
         "spanishTitle": "Temperatura",
         "englishTitle": "Temperature",
         "lecture": {
-            "temperature": 25
+            "temperature": 25,
+            "unitOfMeasurement": "°C"
         }
     },
     {
         "spanishTitle": "Intensidad de Luz",
         "englishTitle": "Light Intensity",
         "lecture": {
-            "lightIntensity": 125
+            "lightIntensity": 125,
+            "unitOfMeasurement": "lum"
         }
     },
     {
-        "spanishTitle": "PH",
-        "englishTitle": "PH",
+        "spanishTitle": "pH",
+        "englishTitle": "pH",
         "lecture": {
-            "ph": 6.8
+            "ph": 6.8,
+            "unitOfMeasurement": "u"
         }
     },
     {
         "spanishTitle": "Transparencia",
         "englishTitle": "Transparency",
         "lecture": {
-            "transparency": 46
+            "transparency": 46,
+            "unitOfMeasurement": "DS (cm)"
         }
     },
     {
         "spanishTitle": "Oxigenación",
         "englishTitle": "Oxygenation",
         "lecture": {
-            "oxygenation": 6.1
+            "oxygenation": 6.1,
+            "unitOfMeasurement": "OD"
         }
     },
     {
         "spanishTitle": "Alcalinidad",
         "englishTitle": "Alkalinity",
         "lecture": {
-            "alkalinity": 43
+            "alkalinity": 43,
+            "unitOfMeasurement": "mg/L CaCO3"
         }
     }
 ]
