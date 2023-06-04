@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { get } from "../utils/httpClient.js"
+import { login } from "../../utils/httpClient.js"
 import Cookies from 'universal-cookie';
 import styles from './Login.module.css';
 
@@ -14,7 +14,7 @@ export const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const startSession = await get(email, password);
+        const startSession = await login(email, password);
 
         if(startSession) {
             cookies.set('id', startSession.id, { path: "/", sameSite: "lax" }); //accesible desde todos lados
