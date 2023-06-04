@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { PagesRouter } from './PagesRouter.jsx';
+import { PagesRouter } from './components/PagesRouter/PagesRouter.jsx';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

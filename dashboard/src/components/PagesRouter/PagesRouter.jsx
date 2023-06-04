@@ -5,8 +5,8 @@ import {
 } from "react-router-dom";
 import "./PagesRouter.module.css";
 
-import { Login } from './components/Login'
-import { Dashboard } from './components/Dashboard/Dashboard.jsx'
+import { Login } from '../Login/Login.jsx'
+import { Dashboard } from '../Dashboard/Dashboard.jsx'
 
 export const PagesRouter = () => {
 
