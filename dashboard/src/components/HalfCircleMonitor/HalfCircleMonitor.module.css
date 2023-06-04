@@ -1,0 +1,64 @@
+.circle {
+    margin-top: 15px;
+}
+
+.circle p {
+    width: 130px;
+    height: 65px;
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+    overflow: hidden;
+    font-weight: 600;
+    right: -20px;
+}
+
+.span {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 130px;
+    height: 130px;
+    border: 15px solid;
+    box-sizing: border-box;
+    border-radius: 50%;
+    transform: rotate(135deg);
+    transition: 0.5s;
+}
+
+.sensorMeasurementValue {
+    font-size: 25px;
+}
+
+.unitOfMeasurement {
+    color: grey;
+}
+
+.small {
+    margin: 0 auto;
+    z-index: 99;
+}
+
+.red {
+    border-color: red red #ddd #ddd;
+}
+
+.yellow {
+    border-color: yellow yellow black black;
+}
+
+.purple {
+    border-color: purple purple gray gray;
+}
+
+.lightblue {
+    border-color: #d3e4f8 #d3e4f8 gray gray;
+}
+
+.green {
+    border-color: lightgreen lightgreen gray gray;
+}
+
+.blue {
+    border-color: blue blue darkslategray darkslategray;
+}
