@@ -30,11 +30,17 @@ export const Dashboard = ({ title, children }) => {
                     <h1>{ children }</h1>
                 </div>
                 <Link
-                    className={styles.closeSession} 
-                    onClick={closeSession} 
+                    className={styles.closeSession}
+                    onClick={closeSession}
                     to="./"
                 >
-                    Cerrar Sesion
+                    <img
+                        className={styles.logoutImage}
+                        src="./logout.png"
+                        alt="Exit"
+                        width={30}
+                    />
+                    <span className={styles.logoutText} > Exit </span>
                 </Link>
             </header>
             <nav className={styles.navbar}>NAVBAR</nav>

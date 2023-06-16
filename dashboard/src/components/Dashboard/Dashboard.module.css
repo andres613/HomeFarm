@@ -17,6 +17,7 @@
 
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .closeSession {
@@ -62,17 +63,38 @@
     display: grid;
     gap: 10px;
     grid-template:
-    "header"  100px
+    "header"  70px
     "navbar"  50px
     "sidebar" max-content
     "main"    auto
     "footer"  50px;
 }
 
+.logoutImage {
+    margin: 20px 0 0 0;
+}
+
+.logoutText {
+    display:none;
+}
+
+.logoutImage:hover {
+    opacity: 0.2;
+}
+
+.logoutImage:hover + .logoutText {
+    position: absolute;
+    display: block;
+    margin-top: -50px;
+    margin-right: -50px;
+    color: #0A3143;
+    font-weight: 900;
+}
+
 @media (min-width: 600px) {
     .gridContainer {
         grid-template:
-        "header  header" 100px
+        "header  header" 70px
         "navbar  navbar" 50px
         "sidebar main"   auto
         "footer  footer" 50px /
