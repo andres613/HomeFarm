@@ -26,7 +26,7 @@ export function apiResponse(arg) {
                     return response;
                 })
         default:
-            return fetch("/fake_api_monitor.json")
+            return fetch("/FakeApiMonitor.json")
                 .then(apiResponse => apiResponse.json())
                 .then(response => {
                     return response;
