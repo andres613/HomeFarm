@@ -1,0 +1,18 @@
+{
+    "variables": [
+        "Temperatura",
+        "Intensidad de Luz",
+        "pH",
+        "Transparencia",
+        "Oxigenación",
+        "Alcalinidad"
+    ],
+    "data": {
+        "temperature": 25,
+        "lightIntensity": 125,
+        "ph": 6.0,
+        "transparency": 40,
+        "oxygenation": 6,
+        "alkalinity": 47
+    }
+}

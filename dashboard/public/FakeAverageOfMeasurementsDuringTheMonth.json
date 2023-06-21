@@ -1,0 +1,125 @@
+{
+    "variables": ["Temperatura", "Intensidad de Luz", "pH", "Transparencia", "Oxigenación", "Alcalinidad"],
+    "data": {
+        "01Jun2023": {
+            "temperature": 25,
+            "lightIntensity": 125,
+            "ph": 6.0,
+            "transparency": 40,
+            "oxygenation": 6,
+            "alkalinity": 47
+        },
+        "02Jun2023": {
+            "temperature": 24,
+            "lightIntensity": 122,
+            "ph": 6.1,
+            "transparency": 41,
+            "oxygenation": 6.1,
+            "alkalinity": 43
+        },
+        "03Jun2023": {
+            "temperature": 23,
+            "lightIntensity": 120,
+            "ph": 6.2,
+            "transparency": 42,
+            "oxygenation": 6,
+            "alkalinity": 45
+        },
+        "04Jun2023": {
+            "temperature": 26,
+            "lightIntensity": 124,
+            "ph": 6.8,
+            "transparency": 43,
+            "oxygenation": 5.1,
+            "alkalinity": 42.3
+        },
+        "05Jun2023": {
+            "temperature": 25.2,
+            "lightIntensity": 123,
+            "ph": 6.4,
+            "transparency": 42,
+            "oxygenation": 5.9,
+            "alkalinity": 48.3
+        },
+        "06Jun2023": {
+            "temperature": 25.3,
+            "lightIntensity": 122,
+            "ph": 6.5,
+            "transparency": 44,
+            "oxygenation": 6.4,
+            "alkalinity": 41
+        },
+        "07Jun2023": {
+            "temperature": 24.5,
+            "lightIntensity": 121.15,
+            "ph": 6.1,
+            "transparency": 45.6,
+            "oxygenation": 5.1,
+            "alkalinity": 46
+        },
+        "08Jun2023": {
+            "temperature": 23.5,
+            "lightIntensity": 123.5,
+            "ph": 6.3,
+            "transparency": 41.6,
+            "oxygenation": 5.1,
+            "alkalinity": 46
+        },
+        "09Jun2023": {
+            "temperature": 25.1,
+            "lightIntensity": 122.5,
+            "ph": 6.4,
+            "transparency": 46,
+            "oxygenation": 6.9,
+            "alkalinity": 43
+        },
+        "10Jun2023": {
+            "temperature": 25.9,
+            "lightIntensity": 125,
+            "ph": 6.8,
+            "transparency": 44,
+            "oxygenation": 7,
+            "alkalinity": 47
+        },
+        "11Jun2023": {
+            "temperature": 26,
+            "lightIntensity": 120.5,
+            "ph": 6.1,
+            "transparency": 47,
+            "oxygenation": 4.9,
+            "alkalinity": 41
+        },
+        "12Jun2023": {
+            "temperature": 26.1,
+            "lightIntensity": 121.5,
+            "ph": 6.2,
+            "transparency": 48,
+            "oxygenation": 6.1,
+            "alkalinity": 40
+        },
+        "13Jun2023": {
+            "temperature": 23,
+            "lightIntensity": 120,
+            "ph": 6.2,
+            "transparency": 42,
+            "oxygenation": 6,
+            "alkalinity": 45
+        },
+        "14Jun2023": {
+            "temperature": 26,
+            "lightIntensity": 124,
+            "ph": 6.8,
+            "transparency": 43,
+            "oxygenation": 5.1,
+            "alkalinity": 42.3
+        },
+        "15Jun2023": {
+            "temperature": 25.2,
+            "lightIntensity": 123,
+            "ph": 6.4,
+            "transparency": 42,
+            "oxygenation": 5.9,
+            "alkalinity": 48.3
+        }
+    }
+}

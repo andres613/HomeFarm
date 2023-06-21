@@ -1,5 +1,5 @@
 export async function login(email, pass) {
-    return await fetch("/fake_api.json")
+    return await fetch("./FakeApiLogin.json")
         .then(apiResponse => apiResponse.json())
         .then(response => {
             for (let i = 0; i < response.length; i++) {
@@ -11,11 +11,25 @@ export async function login(email, pass) {
         });
 }
 
-export function apiResponse() {
-    return fetch("/fake_api.json")
-        .then(apiResponse => apiResponse.json())
-        .then(response => {
-            response = response.slice(1)
-            return response;
-        })
+export function apiResponse(arg) {
+    switch (arg) {
+        case "AverageOfMeasurementsDuringTheDay":
+            return fetch("/FakeAverageOfMeasurementsDuringTheDay.json")
+                .then(apiResponse => apiResponse.json())
+                .then(response => {
+                    return response;
+                })
+        case "AverageOfMeasurementsDuringTheMonth":
+            return fetch("/FakeAverageOfMeasurementsDuringTheMonth.json")
+                .then(apiResponse => apiResponse.json())
+                .then(response => {
+                    return response;
+                })
+        default:
+            return fetch("/fake_api_monitor.json")
+                .then(apiResponse => apiResponse.json())
+                .then(response => {
+                    return response;
+                })
+    }
 }
