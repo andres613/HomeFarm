@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Monitor } from "../Monitor/Monitor.jsx";
+import { AverageOfMeasurementsDuringTheDay } from '../AverageOfMeasurements/AverageOfMeasurementsDuringTheDay.jsx';
+import { AverageOfMeasurementsDuringTheMonth } from '../AverageOfMeasurements/AverageOfMeasurementsDuringTheMonth.jsx';
 import Cookies from 'universal-cookie';
 import styles from './Dashboard.module.css'
 
@@ -43,11 +45,25 @@ export const Dashboard = ({ title, children }) => {
                     <span className={styles.logoutText} > Exit </span>
                 </Link>
             </header>
-            <nav className={styles.navbar}>NAVBAR</nav>
+            <nav className={styles.navbar}>
+                NAVBAR
+                ALEVINOS
+                BIOFLOC
+                <div className={styles.AverageOfMeasurementsDuringTheDayInNav}>
+                    <AverageOfMeasurementsDuringTheDay measurementsReport={"AverageOfMeasurementsDuringTheDay"} />
+                </div>
+            </nav>
             <aside className={styles.sidebar}>
                 <Monitor />
             </aside>
-            <article className={styles.main}>MAIN</article>
+            <article className={styles.main}>
+                <div className={styles.AverageOfMeasurementsDuringTheDayInMain}>
+                    <AverageOfMeasurementsDuringTheDay measurementsReport={"AverageOfMeasurementsDuringTheDay"} />
+                </div>
+                <div className={styles.AverageOfMeasurementsDuringTheMonth}>
+                    <AverageOfMeasurementsDuringTheMonth measurementsReport={"AverageOfMeasurementsDuringTheMonth"} />
+                </div>
+            </article>
             <footer className={styles.footer}>FOOTER</footer>
         </div>
     )

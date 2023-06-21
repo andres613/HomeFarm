@@ -35,8 +35,9 @@
 
 .navbar {
     grid-area: navbar;
-    background-color: #276E90;
-    color: white;
+    background-color: #CECFC9;
+    opacity: 0.9;
+    justify-content: center;
 }
 
 .sidebar {
@@ -49,6 +50,7 @@
     grid-area: main;
     background-color: #CECFC9;
     opacity: 0.9;
+    justify-content: center;
 }
 
 .footer {
@@ -91,6 +93,10 @@
     font-weight: 900;
 }
 
+.AverageOfMeasurementsDuringTheDayInNav {
+    display: none;
+}
+
 @media (min-width: 600px) {
     .gridContainer {
         grid-template:
@@ -99,6 +105,14 @@
         "sidebar main"   auto
         "footer  footer" 50px /
         300px    auto;
+    }
+
+    .AverageOfMeasurementsDuringTheDayInNav {
+        display: none;
+    }
+
+    .AverageOfMeasurementsDuringTheDayInMain {
+        display: block;
     }
 }
 
@@ -110,5 +124,13 @@
         "navbar  main    main"    auto
         "navbar  footer  footer"  50px /
         200px    auto   auto;
+    }
+
+    .AverageOfMeasurementsDuringTheDayInNav {
+        display: block;
+    }
+
+    .AverageOfMeasurementsDuringTheDayInMain {
+        display: none;
     }
 }
