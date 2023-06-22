@@ -55,12 +55,13 @@ export const AverageOfMeasurementsDuringTheMonth = ({ measurementsReport }) => {
         return (
             <>
                 <ChartComponent
+                    title="Promedio por medición últimos 15 días"
                     categories={categoriesAverageOfMeasurements}
                     showCategories={true}
                     dataLabelsAreEnabled={false}
                     isDistributed={false}
                     series={series}
-                    type="line"
+                    type="bar"
                 />
             </>
         );

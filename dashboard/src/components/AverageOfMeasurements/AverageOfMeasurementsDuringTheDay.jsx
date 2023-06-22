@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { apiResponse } from "../../utils/httpClient.js"
 import { ChartComponent } from "../ChartComponent/ChartComponent.jsx"
-import { ChartTest } from '../AverageOfMeasurements/ChartTest.jsx';
 
 export const AverageOfMeasurementsDuringTheDay = ({ measurementsReport }) => {
     let data = [];
@@ -35,6 +34,7 @@ export const AverageOfMeasurementsDuringTheDay = ({ measurementsReport }) => {
         return (
             <>
                 <ChartComponent
+                    title="Promedio dia"
                     categories={categoriesAverageOfMeasurements}
                     showCategories={false}
                     dataLabelsAreEnabled={true}

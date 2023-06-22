@@ -2,7 +2,8 @@ import { useState } from 'react';
 import Chart from 'react-apexcharts'
 import styles from './ChartComponent.module.css'
 
-export const ChartComponent = ({ categories, showCategories, dataLabelsAreEnabled, isDistributed, series, type }) => {
+export const ChartComponent = ({ title, categories, showCategories, dataLabelsAreEnabled, isDistributed, series, type }) => {
+    
     const [chartDate] = useState({
         options: {
             chart: {
@@ -12,6 +13,14 @@ export const ChartComponent = ({ categories, showCategories, dataLabelsAreEnable
                 toolbar: {
                     show: false
                 },
+            },
+            title: {
+                text: title,
+                floating: true,
+                align: 'center',
+                style: {
+                    color: '#444'
+                }
             },
             grid: { show: true },
             xaxis: {
@@ -35,7 +44,7 @@ export const ChartComponent = ({ categories, showCategories, dataLabelsAreEnable
                     },
                 }
             },
-            colors: ['#0A0AEF', '#F2F30C', '#790679', '#98999B', '#88DD88', '#EE0808'],
+            colors: ['#0A0AEF', '#F2F30C', '#790679', '#98999B', '#008f39', '#EE0808'],
             legend: {
                 show: true
             }
