@@ -28,8 +28,12 @@ export const Dashboard = ({ title, children }) => {
         <div className={styles.gridContainer}>
             <header className={styles.header}>
                 <div>
-                    <h6>{ title }</h6>
-                    <h1>{ children }</h1>
+                    <p>{children}</p>
+                    <img
+                        className={styles.avatarImg}
+                        src="./HOMEFARM.png"
+                        alt="Login icon"
+                    />
                 </div>
                 <Link
                     className={styles.closeSession}
@@ -40,15 +44,12 @@ export const Dashboard = ({ title, children }) => {
                         className={styles.logoutImage}
                         src="./logout.png"
                         alt="Exit"
-                        width={30}
+                        width={50}
                     />
-                    <span className={styles.logoutText} > Exit </span>
+                    <span className={styles.logoutText} > Salir </span>
                 </Link>
             </header>
             <nav className={styles.navbar}>
-                NAVBAR
-                ALEVINOS
-                BIOFLOC
                 <div className={styles.AverageOfMeasurementsDuringTheDayInNav}>
                     <AverageOfMeasurementsDuringTheDay measurementsReport={"AverageOfMeasurementsDuringTheDay"} />
                 </div>
@@ -60,11 +61,14 @@ export const Dashboard = ({ title, children }) => {
                 <div className={styles.AverageOfMeasurementsDuringTheDayInMain}>
                     <AverageOfMeasurementsDuringTheDay measurementsReport={"AverageOfMeasurementsDuringTheDay"} />
                 </div>
+                <br />
                 <div className={styles.AverageOfMeasurementsDuringTheMonth}>
                     <AverageOfMeasurementsDuringTheMonth measurementsReport={"AverageOfMeasurementsDuringTheMonth"} />
                 </div>
             </article>
-            <footer className={styles.footer}>FOOTER</footer>
+            <footer className={styles.footer}>
+                <p>&copy;2023 Copyright <a href="#">{title}</a> | Design by Andres Restrepo </p>
+            </footer>
         </div>
     )
 }

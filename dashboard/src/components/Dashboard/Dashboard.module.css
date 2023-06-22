@@ -13,11 +13,22 @@
 
 .header {
     grid-area: header;
-    background-color: #EFEFEF;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+p {
+    color: white;
+    text-shadow: 2px 2px 8px #0A3143;
+}
+
+.avatarImg {
+    position: relative;
+    overflow: hidden;
+    max-width: 250px;
+    height: auto;
+    filter: drop-shadow(10px 5px 5px #0A3143);
 }
 
 .closeSession {
@@ -55,7 +66,7 @@
 
 .footer {
     grid-area: footer;
-    background-color: #0A3143;
+    background-color: #000;
     color: white;
     opacity: 0.9;
 }
@@ -74,6 +85,7 @@
 
 .logoutImage {
     margin: 20px 0 0 0;
+    border-radius: 5px;
 }
 
 .logoutText {
@@ -87,14 +99,28 @@
 .logoutImage:hover + .logoutText {
     position: absolute;
     display: block;
-    margin-top: -50px;
-    margin-right: -50px;
-    color: #0A3143;
+    margin-top: -70px;
+    margin-left: 10px;
+    color: #fff;
     font-weight: 900;
 }
 
 .AverageOfMeasurementsDuringTheDayInNav {
     display: none;
+}
+
+.footer p {
+    color: gray;
+    font-size: 14px;
+    word-spacing: 2px;
+    margin: 0 auto;
+}
+
+.footer p a {
+    font-size: 16px;
+    text-decoration: none;
+    color: white;
+    text-shadow: 2px 2px 8px #000;
 }
 
 @media (min-width: 600px) {
