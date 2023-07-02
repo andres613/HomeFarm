@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { login } from "../../utils/httpClient.js"
 import Cookies from 'universal-cookie';
@@ -10,6 +10,7 @@ export const Login = () => {
 
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
+    const [ user, setUser ] = useState(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -21,7 +22,8 @@ export const Login = () => {
             cookies.set('name', startSession.name, { path: "/", sameSite: "lax" });
             cookies.set('username', startSession.username, { path: "/", sameSite: "lax" });
             cookies.set('email', startSession.email, { path: "/", sameSite: "lax" });
-            window.location.href="./dashboard";
+        
+            setUser(startSession);
         } else {
             alert("Email o password incorrecto!!")
         }
@@ -29,12 +31,15 @@ export const Login = () => {
 
     useEffect(() => {
         if(cookies.get('username')) {
-            window.location.href='./dashboard';
+            setUser(cookies.get('username'));
+          
+            {user && <Navigate to="/dashboard" state={user} replace={true} />}
         }
-    })
+    }, [])
 
     return (
         <div className={styles.login} >
+            {user && <Navigate to="/dashboard" state={user} replace={true} />}
             <div className={styles.blur} >
                 <img
                     className={styles.avatarImg}
@@ -72,7 +77,7 @@ export const Login = () => {
                         value="Login"
                     />
                     <div className={styles.remember} >
-                         <div className={styles.signup} >
+                        <div className={styles.signup} >
                             Don't have account?
                             <Link className={styles.signupNow} to="/signin">
                                 Signup Now

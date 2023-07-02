@@ -10,7 +10,7 @@
     max-width: 380px;
     height: auto;
     margin-left: calc(-55px/2);
-    filter: drop-shadow(10px 5px 5px #0A3143);
+    filter: drop-shadow(10px 5px 5px #000);
 }
 
 .blur {
@@ -94,10 +94,11 @@
 }
 
 .signup {
-    font-size: 13px;
-    color: #fff;
-    font-family: sans-serif;
+    font-size: 15px;
+    color: #000; 
+    text-shadow: 12px 6px 12px #fff, -16px -6px 12px #fff;
     text-align: center;
+    font-weight: bold;
 }
 
 .signup .signupNow {
