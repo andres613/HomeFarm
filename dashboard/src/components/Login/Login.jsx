@@ -22,6 +22,7 @@ export const Login = () => {
             cookies.set('name', startSession.name, { path: "/", sameSite: "lax" });
             cookies.set('username', startSession.username, { path: "/", sameSite: "lax" });
             cookies.set('email', startSession.email, { path: "/", sameSite: "lax" });
+            cookies.set('userType', startSession.userType, { path: "/", sameSite: "lax" });
         
             setUser(startSession);
         } else {

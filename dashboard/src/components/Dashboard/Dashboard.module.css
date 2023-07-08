@@ -46,10 +46,12 @@ p {
 }
 
 .navbar {
+    z-index: 10;
     grid-area: navbar;
     background-color: #CECFC9;
     opacity: 0.9;
     justify-content: center;
+    display: grid;
 }
 
 .sidebar {
@@ -137,10 +139,6 @@ p {
     .AverageOfMeasurementsDuringTheDayInNav {
         display: none;
     }
-
-    .AverageOfMeasurementsDuringTheDayInMain {
-        display: block;
-    }
 }
 
 @media (min-width: 900px) {
@@ -155,9 +153,5 @@ p {
 
     .AverageOfMeasurementsDuringTheDayInNav {
         display: block;
-    }
-
-    .AverageOfMeasurementsDuringTheDayInMain {
-        display: none;
     }
 }

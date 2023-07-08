@@ -1,31 +1,39 @@
-import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
+import { Link, Navigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { Monitor } from "../Monitor/Monitor.jsx";
 import { AverageOfMeasurementsDuringTheDay } from '../AverageOfMeasurements/AverageOfMeasurementsDuringTheDay.jsx';
-import { AverageOfMeasurementsDuringTheMonth } from '../AverageOfMeasurements/AverageOfMeasurementsDuringTheMonth.jsx';
+import { Menu } from '../Menu/Menu.jsx';
+import { Main } from '../Main/Main.jsx';
+import { useModuleContext } from '../Provider/ModuleProvider';
 import Cookies from 'universal-cookie';
 import styles from './Dashboard.module.css'
 
 const cookies = new Cookies();
 
 export const Dashboard = ({ title, children }) => {
+    const [ user, setUser ] = useState("user");
+    const module = useModuleContext();
 
     const closeSession = () => {
         cookies.remove('id', { path: "/", sameSite: "lax" });
         cookies.remove('name', { path: "/", sameSite: "lax" });
         cookies.remove('username', { path: "/", sameSite: "lax" });
         cookies.remove('email', { path: "/", sameSite: "lax" });
-        window.location.href='./';
+        cookies.remove('userType', { path: "/", sameSite: "lax" });
+            
+        setUser(null);
     }
 
     useEffect(() => {
-        if(!cookies.get('username')) {
-            window.location.href='./';
+        if(user) {
+            
+            {!user && <Navigate to="/" state={user} replace={true} />}
         }
-    })
+    }, [])
 
     return (
         <div className={styles.gridContainer}>
+            {!user && <Navigate to="/" state={user} replace={true} />}
             <header className={styles.header}>
                 <div>
                     <p>{children}</p>
@@ -50,6 +58,7 @@ export const Dashboard = ({ title, children }) => {
                 </Link>
             </header>
             <nav className={styles.navbar}>
+                <Menu />
                 <div className={styles.AverageOfMeasurementsDuringTheDayInNav}>
                     <AverageOfMeasurementsDuringTheDay measurementsReport={"AverageOfMeasurementsDuringTheDay"} />
                 </div>
@@ -58,13 +67,7 @@ export const Dashboard = ({ title, children }) => {
                 <Monitor />
             </aside>
             <article className={styles.main}>
-                <div className={styles.AverageOfMeasurementsDuringTheDayInMain}>
-                    <AverageOfMeasurementsDuringTheDay measurementsReport={"AverageOfMeasurementsDuringTheDay"} />
-                </div>
-                <br />
-                <div className={styles.AverageOfMeasurementsDuringTheMonth}>
-                    <AverageOfMeasurementsDuringTheMonth measurementsReport={"AverageOfMeasurementsDuringTheMonth"} />
-                </div>
+                <Main module={module} />
             </article>
             <footer className={styles.footer}>
                 <p>&copy;2023 Copyright <a href="#">{title}</a> | Design by Andres Restrepo </p>

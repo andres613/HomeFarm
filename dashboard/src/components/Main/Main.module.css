@@ -1,0 +1,19 @@
+.AverageOfMeasurementsDuringTheDayInMain {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .AverageOfMeasurementsDuringTheMonth {
+        display: none;
+    }
+}
+
+@media (max-width: 900px) {
+    .AverageOfMeasurementsDuringTheDayInMain {
+        display: block;
+    }
+  
+    .AverageOfMeasurementsDuringTheMonth {
+        display: none;
+    }
+}

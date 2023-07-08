@@ -1,0 +1,20 @@
+[
+    {
+        "id": "main",
+        "name": "Principal",
+        "url": "/main",
+        "isAdminModule": false
+    },
+    {
+        "id": "reports",
+        "name": "Informes",
+        "url": "/report",
+        "isAdminModule": false
+    },
+    {
+        "id": "users",
+        "name": "Usuarios",
+        "url": "/users",
+        "isAdminModule": true
+    }
+]
