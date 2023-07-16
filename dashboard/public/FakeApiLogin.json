@@ -4,6 +4,15 @@
         "password": "123",
         "id": 1,
         "name": "Andres Restrepo",
-        "username": "arestrepo"
+        "username": "arestrepo",
+        "userType": "admin"
+    },
+    {
+        "email": "b@b.com",
+        "password": "456",
+        "id": 2,
+        "name": "Elza Pato",
+        "username": "epato",
+        "userType": "normal"
     }
 ]
