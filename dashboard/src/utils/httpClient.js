@@ -1,5 +1,6 @@
 const baseUrl = 'http://localhost:8080';
 let data = "";
+let get_api_response = [];
 
 export async function login(email, pass) {
     return await fetch("./FakeApiLogin.json")
@@ -47,4 +48,79 @@ export function apiResponse(arg) {
                     return response;
                 })
     }
+}
+
+
+export async function reports(request) {
+    let initialDateParsed = Date.parse(request.initialDate);
+    let finalDateParsed = Date.parse(request.finalDate);
+    // const months = ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
+    // console.log(months[parseInt(request.currentDate.substring(5, 7))]);
+    let response = {};
+    let dataResponse = await getDataResponse();
+    dataResponse.data = getDataDependingRequest(initialDateParsed, finalDateParsed, dataResponse.data);
+
+    response["items"] = Object.keys(dataResponse.data).length;
+    response["itemsPerPage"] = request.itemsPerPage;
+    response["pages"] = getNumberPages(response["items"], request.itemsPerPage);
+    response["pageNumber"] = request.currentPage;
+    response["variables"] = [dataResponse.variables];
+    response["data"] = getDataToTable(dataResponse.data, request.itemsPerPage, request.currentPage);
+
+    return response;
+}
+
+const getDataResponse = async () => {
+    return await fetch("/FakeAPIResponseToRetort.json")
+        .then(apiResponse => apiResponse.json())
+        .then(response => response);
+}
+
+const getDataDependingRequest = (initialDate, finalDate, data) => {
+    let temporalData = [];
+    let temporalDate = '';
+
+    Object.keys(data).map(d => {
+        temporalDate = Date.parse(data[d].date);
+        
+        if(temporalDate >= initialDate && temporalDate <= finalDate)
+            temporalData.push(data[d]);
+    })
+
+    return temporalData;
+}
+
+const getNumberPages = (dataLength, itemsPerPage) => {
+    let pages = []
+    if(dataLength % itemsPerPage === 0){
+        if(dataLength / itemsPerPage > 0) {
+            for(let i=1; i < Math.trunc(dataLength/itemsPerPage)+1; i++){
+                pages.push(i)
+            }
+        } else {
+            pages.push(1)
+        }
+    } else {
+        for(let i=1; i <= Math.trunc(dataLength/itemsPerPage)+1; i++){
+            pages.push(i)
+        }
+    }
+
+    return pages
+}
+
+const getDataToTable = (dataResponse, itemsPerPage, numberPageToShow) => {
+    itemsPerPage = parseInt(itemsPerPage);
+    numberPageToShow = parseInt(numberPageToShow);
+
+    let data = {};
+    let i = itemsPerPage * (numberPageToShow - 1);
+    let j = i + itemsPerPage;
+
+    for (i; i < j; i++) {
+        if(dataResponse[Object.keys(dataResponse)[i]])
+            data[Object.keys(dataResponse)[i]] = dataResponse[Object.keys(dataResponse)[i]];
+    }
+
+    return data;
 }

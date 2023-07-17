@@ -1,0 +1,31 @@
+#paging {
+    text-align: center;
+}
+
+
+.paginationContainer {
+    margin: 10px;
+}
+
+.paginationButton {
+    border-radius: 5px;
+    text-transform: uppercase;
+    display: inline-block;
+    text-align: center;
+    padding: 5px 10px;
+    margin: 0 1px;
+}
+
+.paginationButton:hover {
+    color: #000;
+    background: greenyellow;
+}
+
+.isActive {
+    color: white;
+    font-size: 15px;
+    background-color: rgb(21, 71, 52, 0.6);
+    box-shadow: 5px 5px #666;
+}
+
+
