@@ -1,0 +1,173 @@
+.login {
+    margin: 0;
+    padding: 0;
+}
+
+.login {
+  /* top: 50%; */
+    margin: 0 auto;
+    /* border: 1px solid red; */
+}
+
+.avatarImg {
+    /* position: relative; */
+    overflow: hidden;
+    top: calc(-100px/2);
+    max-width: 380px;
+    height: auto;
+    margin-left: calc(-55px/2);
+    filter: drop-shadow(10px 5px 5px #000);
+}
+
+.blur {
+    /* position: absolute; */
+    /* top: 50%; */
+    /* left: 50%; */
+    /* transform: translate(-50%, -50%); */
+    max-width: 600px;
+    min-width: 350px;
+    /* min-height: 400px; */
+    padding: 20px 40px;
+    box-sizing: border-box;
+    background: rgb(255 255 255 / 11%);
+    box-shadow: -1px 4px 28px 0px rgba(0,0,0,0.75);
+    border-radius: 10px;
+    
+  
+    /* text-align: center; */
+    /* align-items: center; */
+    /* justify-content: center; */
+    position: relative;
+    margin: 0 auto;
+}
+
+.blur h2 {
+    margin: 10px 0 30px 0;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Muli Bold";
+    text-shadow: 0 0 2px #000;
+}
+
+.blur label {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 10px #0A3143;
+}
+
+.blur input {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.blur input[type="password"], .blur input[type="email"], .blur input[type="text"] {
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    font-size: 16px;
+}
+
+.blur input[type="submit"] {
+    color: #FFF;
+    font-size: 16px;
+    background: #0A3143;
+    opacity: 0.8;
+    cursor: pointer;
+    border-radius: 5px;
+    outline: none;
+    padding: 10px 10px 10px 10px;
+}
+
+.blur input[type="submit"]:hover {
+    background: #276E90;
+    color: #EFEFEF;
+}
+
+.blur a {
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.email, .pass {
+    color: white;
+    text-shadow: 2px 2px 8px #0A3143;
+}
+
+.email::placeholder, .pass::placeholder {
+    color: white;
+    opacity: 0.7;
+    text-shadow: none;
+}
+
+@media (max-width: 400px) {
+    .avatarImg {
+        max-width: 320px;
+        /* margin-left: calc(5px/2); */
+    }
+}
+
+@media (max-width: 900px) {
+    .avatarImg {
+        max-width: 320px;
+        /* margin-left: calc(5px/2); */
+    }
+
+    .blur {
+        /* position: absolute; */
+        /* top: 50%; */
+        /* left: 50%; */
+        /* transform: translate(-50%, -50%); */
+        max-width: 350px;
+        min-width: 350px;
+        padding: 20px 40px;
+        box-sizing: border-box;
+        background: rgb(255 255 255 / 11%);
+        box-shadow: -1px 4px 28px 0px rgba(0,0,0,0.75);
+        border-radius: 10px;
+
+
+        /* text-align: center; */
+        /* align-items: center; */
+        /* justify-content: center; */
+        position: relative;
+        margin: 0 auto;
+    }
+
+    .blur h2 {
+        margin: 10px 0;
+        color: #fff;
+        text-align: center;
+        text-transform: uppercase;
+        font-family: "Muli Bold";
+        text-shadow: 0 0 2px #000;
+        font-size: 20px;
+    }
+
+    .blur label {
+        margin: 0;
+        padding: 0;
+        font-weight: bold;
+        color: #fff;
+        text-shadow: 0 0 10px #0A3143;
+    }
+
+    .blur input {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+.inputSinginContainer {
+    display: none;
+}
+
+.admin {
+    display: block;
+}

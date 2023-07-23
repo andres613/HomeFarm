@@ -124,3 +124,48 @@ const getDataToTable = (dataResponse, itemsPerPage, numberPageToShow) => {
 
     return data;
 }
+
+
+export const userHandler = async (isAdminModule, option, user, oldUser) => {
+    let response;
+
+    if(!isAdminModule) {
+        response = await login(user.email, user.password);
+        return response;
+    }
+
+    switch (option) {
+        case 'send':
+            return {data: "newUser: " + JSON.stringify(user) + " saved!"};
+
+        case 'search':
+            response = await getUser(user.id);
+            return response;
+
+        case 'update':
+            return {
+                data: 
+                "User: " + JSON.stringify(oldUser) + 
+                " updated to " + JSON.stringify(user)
+            };
+
+        case 'delete':
+            return {data: "User: " + JSON.stringify(user) + " deleted!"};
+    }    
+}
+
+export async function getUser(id) {
+    return await fetch("./FakeApiLogin.json")
+        .then(apiResponse => apiResponse.json())
+        .then(response => {
+            for (let i = 0; i < response.length; i++) {
+                if (id === response[i].id.toString()) {
+                    return {data: response[i]};
+                }
+            }
+
+            return {data: false};
+        });
+}
+
+

@@ -1,0 +1,26 @@
+.crudOptions {
+    gap: 5px;
+    list-style: none;
+    align-items: center;
+    display: flex;
+    margin: 15px 0;
+}
+
+.crudListItem {
+    width: 100%;
+}
+
+.crudListItem button {
+    width: 100%;
+    border-radius: 5px;
+    height: 40px;
+    font-size: 16px;
+}
+
+#send {
+    display: flex;
+}
+
+.admin {
+    display: block;
+}

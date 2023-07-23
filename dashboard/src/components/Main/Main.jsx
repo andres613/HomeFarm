@@ -2,6 +2,8 @@ import { AverageOfMeasurementsDuringTheDay } from '../AverageOfMeasurements/Aver
 import { AverageOfMeasurementsDuringTheMonth } from '../AverageOfMeasurements/AverageOfMeasurementsDuringTheMonth.jsx';
 import { ReportProvider } from '../Provider/ReportProvider.jsx';
 import { Reports } from "../Reports/Reports.jsx";
+import { CrudOptions } from '../CrudOptions/CrudOptions.jsx';
+import { UserAdmin } from '../UserAdmin/UserAdmin.jsx';
 import styles from './Main.module.css';
 
 export const Main = ({ module }) => {
@@ -28,7 +30,12 @@ export const Main = ({ module }) => {
                             </ReportProvider>
                         );
                     case 'users':
-                        return <h1>{ module }</h1>;
+                        return(
+                            <>
+                                <UserAdmin />
+                                {/* <CrudOptions /> */}
+                            </>
+                        );
                 }
             })()}
         </>

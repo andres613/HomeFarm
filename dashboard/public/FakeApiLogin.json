@@ -1,18 +1,18 @@
 [
     {
-        "email": "a@a.com",
-        "password": "123",
         "id": 1,
         "name": "Andres Restrepo",
-        "username": "arestrepo",
+        "phone": "123456",
+        "email": "a@a.com",
+        "password": "123",
         "userType": "admin"
     },
     {
-        "email": "b@b.com",
-        "password": "456",
         "id": 2,
         "name": "Elza Pato",
-        "username": "epato",
+        "phone": "654321",
+        "email": "b@b.com",
+        "password": "456",
         "userType": "normal"
     }
 ]
