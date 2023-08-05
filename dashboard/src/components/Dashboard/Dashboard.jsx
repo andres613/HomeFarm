@@ -1,9 +1,11 @@
 import { Link, Navigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Monitor } from "../Monitor/Monitor.jsx";
 import { AverageOfMeasurementsDuringTheDay } from '../AverageOfMeasurements/AverageOfMeasurementsDuringTheDay.jsx';
 import { Menu } from '../Menu/Menu.jsx';
 import { Main } from '../Main/Main.jsx';
+import { useUserContext } from '../Provider/UserProvider.jsx';
+import { useChangeUserContext } from '../Provider/UserProvider.jsx';
 import { useModuleContext } from '../Provider/ModuleProvider';
 import Cookies from 'universal-cookie';
 import styles from './Dashboard.module.css'
@@ -11,22 +13,19 @@ import styles from './Dashboard.module.css'
 const cookies = new Cookies();
 
 export const Dashboard = ({ title, children }) => {
-    const [ user, setUser ] = useState("user");
+    const user = useUserContext();
+    const changeUser = useChangeUserContext();
     const module = useModuleContext();
 
     const closeSession = () => {
         cookies.remove('id', { path: "/", sameSite: "lax" });
-        cookies.remove('name', { path: "/", sameSite: "lax" });
-        cookies.remove('username', { path: "/", sameSite: "lax" });
-        cookies.remove('email', { path: "/", sameSite: "lax" });
         cookies.remove('userType', { path: "/", sameSite: "lax" });
             
-        setUser(null);
+        changeUser(null);
     }
 
     useEffect(() => {
         if(user) {
-            
             {!user && <Navigate to="/" state={user} replace={true} />}
         }
     }, [])

@@ -8,10 +8,10 @@ export async function login(email, pass) {
         .then(response => {
             for (let i = 0; i < response.length; i++) {
                 if (email === response[i].email && pass === response[i].password) {
-                    return response[i];
+                    return {data: response[i]};
                 }
             }
-            return false;
+            return {data: false};
         });
     
     // data = `{"id":"id", "name":"name", "phone": "phone", "email":"${email}", "pass":"${pass}"}`; 
@@ -54,8 +54,6 @@ export function apiResponse(arg) {
 export async function reports(request) {
     let initialDateParsed = Date.parse(request.initialDate);
     let finalDateParsed = Date.parse(request.finalDate);
-    // const months = ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
-    // console.log(months[parseInt(request.currentDate.substring(5, 7))]);
     let response = {};
     let dataResponse = await getDataResponse();
     dataResponse.data = getDataDependingRequest(initialDateParsed, finalDateParsed, dataResponse.data);
@@ -126,10 +124,10 @@ const getDataToTable = (dataResponse, itemsPerPage, numberPageToShow) => {
 }
 
 
-export const userHandler = async (isAdminModule, option, user, oldUser) => {
+export const userHandler = async (isAdmin, option, user, oldUser) => {
     let response;
 
-    if(!isAdminModule) {
+    if(!isAdmin) {
         response = await login(user.email, user.password);
         return response;
     }
@@ -143,6 +141,9 @@ export const userHandler = async (isAdminModule, option, user, oldUser) => {
             return response;
 
         case 'update':
+            if (!window.confirm(`Desea ACTUALIZAR el usuario identificado como ${oldUser.id}`))
+                return {data: 'Procedimiento cancelado por el usuario'};
+
             return {
                 data: 
                 "User: " + JSON.stringify(oldUser) + 
@@ -150,6 +151,9 @@ export const userHandler = async (isAdminModule, option, user, oldUser) => {
             };
 
         case 'delete':
+            if (!window.confirm(`Realmente desea ELIMINAR el usuario identificado como ${user.id}`))
+                return {data: 'Procedimiento cancelado por el usuario'};
+
             return {data: "User: " + JSON.stringify(user) + " deleted!"};
     }    
 }
@@ -167,5 +171,3 @@ export async function getUser(id) {
             return {data: false};
         });
 }
-
-

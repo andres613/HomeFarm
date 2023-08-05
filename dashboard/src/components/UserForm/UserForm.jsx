@@ -4,7 +4,7 @@ import { CrudOptions } from '../CrudOptions/CrudOptions.jsx';
 import { Message } from '../Message/Message';
 import styles from './UserForm.module.css';
 
-export const UserForm = ({ isAdmin, userAdmin, request }) => {
+export const UserForm = ({ isAdmin, request }) => {
     const userFormInput = document.getElementsByClassName('singInContainer');
 
     const [ userWasFound, setUserWasFound ] = useState(false);
@@ -42,10 +42,7 @@ export const UserForm = ({ isAdmin, userAdmin, request }) => {
             if(_) return _.email; 
             return '';
         });
-        setPassword(() => {
-            if(_) return _.password; 
-            return '';
-        });
+        setPassword("");
         setConfirmPassword("");
         setMessage("");
     };
@@ -92,25 +89,43 @@ export const UserForm = ({ isAdmin, userAdmin, request }) => {
             if(Object.keys(userValidatorResponse).length != 0) return;
         }
 
-        let user = await userAdmin(formData);
+        let user = getUserFromForm(formData);
         let response = await request(isAdmin, option, user, oldUser);
 
-        callback(response);
+        if(isAdmin)
+            callback(response);
+    }
+
+
+    const getUserFromForm = formData => {
+        let user = {};
+        (Object.keys(formData)).map(item => {
+            if(item !== 'confirmPassword')
+                user[item] = formData[item];
+        })
+
+        user.name = user.name.replace(/^\s+|\s+$|\s+(?=\s)/g, '');
+
+        return user;
     }
 
 
     const sendUser = response => {
-        if(!response) return;
+        const { data } = response;
+        if(!data) return;
+
+        if(isAdmin)
+            alert(response.data);
 
         clear();
-        alert(response.data);
     };
 
 
     const searchUser = async response => {
-        if(response.data){
-            setOldUser(response.data);
-            setDefaultValuesInFields(response.data);
+        const { data } = response;
+        if(data){
+            setOldUser(data);
+            setDefaultValuesInFields(data);
             setUserWasFound(true);
             return;
         }
@@ -120,9 +135,10 @@ export const UserForm = ({ isAdmin, userAdmin, request }) => {
 
 
     const deleteUser = async response => {
-        if(response.data){
+        const { data } = response;
+        if(data){
             clear();
-            alert(response.data);
+            alert(data);
             return;
         }
 
@@ -154,8 +170,8 @@ export const UserForm = ({ isAdmin, userAdmin, request }) => {
 
 
     return (
-        <div className={styles.login} >
-            <div className={styles.blur} >
+        <div className={styles.userFormContainer} >
+            <div className={styles.userForm} >
                 <img
                     className={styles.avatarImg}
                     src="./HOMEFARM.png"
@@ -195,7 +211,8 @@ export const UserForm = ({ isAdmin, userAdmin, request }) => {
                 <input
                     type="email"
                     placeholder=" Ingrese email"
-                    className={styles.email}
+                    // className={styles.email}
+                    className={styles.userFormInput}
                     id='email'
                     onChange={e => emailInputHandler(e)}
                     value={email}
@@ -204,7 +221,7 @@ export const UserForm = ({ isAdmin, userAdmin, request }) => {
                 <input
                     type="password"
                     placeholder=" Ingrese contraseña"
-                    className={styles.pass}
+                    className={styles.userFormInput}
                     id='password'
                     onChange={e => passwordInputHandler(e)}
                     value={password}
@@ -214,7 +231,7 @@ export const UserForm = ({ isAdmin, userAdmin, request }) => {
                     <input
                         type="password"
                         placeholder=" Confirmar Contraseña"
-                        className={styles.pass}
+                        className={styles.userFormInput}
                         id='passwordCofirm'
                         onChange={e => confirmPasswordInputHandler(e)}
                         value={confirmPassword}

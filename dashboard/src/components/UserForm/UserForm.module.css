@@ -1,47 +1,28 @@
-.login {
-    margin: 0;
-    padding: 0;
-}
-
-.login {
-  /* top: 50%; */
+.userFormContainer {
     margin: 0 auto;
-    /* border: 1px solid red; */
+    padding: 0;
+    text-align: center;
 }
 
 .avatarImg {
-    /* position: relative; */
-    overflow: hidden;
-    top: calc(-100px/2);
     max-width: 380px;
-    height: auto;
-    margin-left: calc(-55px/2);
-    filter: drop-shadow(10px 5px 5px #000);
+    width: 100%;
 }
 
-.blur {
-    /* position: absolute; */
-    /* top: 50%; */
-    /* left: 50%; */
-    /* transform: translate(-50%, -50%); */
+.userForm {
     max-width: 600px;
     min-width: 350px;
-    /* min-height: 400px; */
     padding: 20px 40px;
     box-sizing: border-box;
     background: rgb(255 255 255 / 11%);
     box-shadow: -1px 4px 28px 0px rgba(0,0,0,0.75);
     border-radius: 10px;
     
-  
-    /* text-align: center; */
-    /* align-items: center; */
-    /* justify-content: center; */
     position: relative;
     margin: 0 auto;
 }
 
-.blur h2 {
+.userForm h2 {
     margin: 10px 0 30px 0;
     color: #fff;
     text-align: center;
@@ -50,7 +31,7 @@
     text-shadow: 0 0 2px #000;
 }
 
-.blur label {
+.userForm label {
     margin: 0;
     padding: 0;
     font-weight: bold;
@@ -58,12 +39,14 @@
     text-shadow: 0 0 10px #0A3143;
 }
 
-.blur input {
+.userForm input {
     width: 100%;
     margin-bottom: 20px;
 }
 
-.blur input[type="password"], .blur input[type="email"], .blur input[type="text"] {
+.userForm input[type="password"],
+.userForm input[type="email"],
+.userForm input[type="text"] {
     border: none;
     border-bottom: 1px solid #fff;
     background: transparent;
@@ -72,7 +55,7 @@
     font-size: 16px;
 }
 
-.blur input[type="submit"] {
+.userForm input[type="submit"] {
     color: #FFF;
     font-size: 16px;
     background: #0A3143;
@@ -83,12 +66,12 @@
     padding: 10px 10px 10px 10px;
 }
 
-.blur input[type="submit"]:hover {
+.userForm input[type="submit"]:hover {
     background: #276E90;
     color: #EFEFEF;
 }
 
-.blur a {
+.userForm a {
     color: #fff;
     font-size: 14px;
     font-weight: bold;
@@ -109,21 +92,15 @@
 @media (max-width: 400px) {
     .avatarImg {
         max-width: 320px;
-        /* margin-left: calc(5px/2); */
     }
 }
 
 @media (max-width: 900px) {
     .avatarImg {
         max-width: 320px;
-        /* margin-left: calc(5px/2); */
     }
 
-    .blur {
-        /* position: absolute; */
-        /* top: 50%; */
-        /* left: 50%; */
-        /* transform: translate(-50%, -50%); */
+    .userForm {
         max-width: 350px;
         min-width: 350px;
         padding: 20px 40px;
@@ -132,15 +109,11 @@
         box-shadow: -1px 4px 28px 0px rgba(0,0,0,0.75);
         border-radius: 10px;
 
-
-        /* text-align: center; */
-        /* align-items: center; */
-        /* justify-content: center; */
         position: relative;
         margin: 0 auto;
     }
 
-    .blur h2 {
+    .userForm h2 {
         margin: 10px 0;
         color: #fff;
         text-align: center;
@@ -150,7 +123,7 @@
         font-size: 20px;
     }
 
-    .blur label {
+    .userForm label {
         margin: 0;
         padding: 0;
         font-weight: bold;
@@ -158,7 +131,7 @@
         text-shadow: 0 0 10px #0A3143;
     }
 
-    .blur input {
+    .userForm input {
         width: 100%;
         margin-bottom: 20px;
     }

@@ -1,92 +1,49 @@
-import { Link, Navigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { Navigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useUserContext } from '../Provider/UserProvider.jsx';
+import { useChangeUserContext } from '../Provider/UserProvider.jsx';
 import { login } from "../../utils/httpClient.js"
+import { UserForm } from '../UserForm/UserForm.jsx';
 import Cookies from 'universal-cookie';
 import styles from './Login.module.css';
 
 const cookies = new Cookies();
 
 export const Login = () => {
+    const user = useUserContext();
+    const changeUser = useChangeUserContext();
 
-    const [ email, setEmail ] = useState("");
-    const [ password, setPassword ] = useState("");
-    const [ user, setUser ] = useState(null);
+    const loginHandler = user => {
+        if(user) {
+            cookies.set('id', user.id, { path: "/", sameSite: "lax" }); //accesible desde todos lados
+            cookies.set('userType', user.userType, { path: "/", sameSite: "lax" });
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        const startSession = await login(email, password);
-
-        if(startSession) {
-            cookies.set('id', startSession.id, { path: "/", sameSite: "lax" }); //accesible desde todos lados
-            cookies.set('name', startSession.name, { path: "/", sameSite: "lax" });
-            cookies.set('username', startSession.username, { path: "/", sameSite: "lax" });
-            cookies.set('email', startSession.email, { path: "/", sameSite: "lax" });
-            cookies.set('userType', startSession.userType, { path: "/", sameSite: "lax" });
-        
-            setUser(startSession);
+            changeUser(user);
         } else {
             alert("Email o password incorrecto!!")
         }
     }
 
+    const request = async (isAdmin, option, userData, oldUser) => {
+        const { email, password } = userData;
+        const response = await login(email, password);
+        loginHandler(response.data)
+    };
+
     useEffect(() => {
-        if(cookies.get('username')) {
-            setUser(cookies.get('username'));
+        if(cookies.get('id')) {
+            changeUser(cookies.get('id'));
           
             {user && <Navigate to="/dashboard" state={user} replace={true} />}
+        } else {
+            changeUser(null);
         }
     }, [])
 
     return (
         <div className={styles.login} >
             {user && <Navigate to="/dashboard" state={user} replace={true} />}
-            <div className={styles.blur} >
-                <img
-                    className={styles.avatarImg}
-                    src="./HOMEFARM.png"
-                    alt="Login icon"
-                />
-                <h2>Login Form</h2>
-                <form onSubmit={handleSubmit} >
-                    <label>Email</label>
-                    <input
-                        type="email"
-                        placeholder=" Enter Email"
-                        className={styles.email}
-                        id='email'
-                        onChange={(e) => {
-                            setEmail(e.target.value);
-                        }}
-                        value={email}
-                        required
-                    />
-                    <label>Password</label>
-                    <input
-                        type="password"
-                        placeholder=" Enter Password"
-                        className={styles.pass}
-                        id='pass'
-                        onChange={(e) => {
-                            setPassword(e.target.value);
-                        }}
-                        value={password}
-                        required
-                    />
-                    <input
-                        type="submit"
-                        value="Login"
-                    />
-                    <div className={styles.remember} >
-                        <div className={styles.signup} >
-                            Don't have account?
-                            <Link className={styles.signupNow} to="/signin">
-                                Signup Now
-                            </Link>
-                        </div>
-                    </div>
-                </form>
-            </div>
+            <UserForm request={request} responseHandler={loginHandler} />
         </div>
     );
 }
