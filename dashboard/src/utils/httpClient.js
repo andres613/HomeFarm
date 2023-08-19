@@ -1,31 +1,142 @@
 const baseUrl = 'http://localhost:8080';
-let data = "";
-let get_api_response = [];
+let requestData = "";
 
-export async function login(email, pass) {
-    return await fetch("./FakeApiLogin.json")
-        .then(apiResponse => apiResponse.json())
-        .then(response => {
-            for (let i = 0; i < response.length; i++) {
-                if (email === response[i].email && pass === response[i].password) {
-                    return {data: response[i]};
-                }
-            }
-            return {data: false};
-        });
-    
-    // data = `{"id":"id", "name":"name", "phone": "phone", "email":"${email}", "pass":"${pass}"}`; 
+export const userHandler = async (isAdmin, option, temporalUser, oldUser) => {
+    let response;
 
-    // return await fetch(baseUrl + "/login", {
-    //     method: 'POST',
-    //     body: data,
-    //     headers: {
-    //         'Content-Type': 'application/json'
-    //     }
-    // })
-    //     .then(apiResponse => apiResponse.json())
-    //     .catch(error => false)
+    if(!isAdmin) {
+        response = await login(temporalUser.email, temporalUser.password);
+        return response;
+    }
+
+    switch (option) {
+        case 'send':
+            return signin(temporalUser);
+
+        case 'search':
+            response = await getUser(temporalUser.document);
+            return response;
+
+        case 'update':
+            if (!window.confirm(`Desea ACTUALIZAR el usuario identificado como ${temporalUser.document}`))
+                return {data: 'Procedimiento cancelado por el usuario'};
+
+            response = await updateUser(temporalUser);
+
+            return {
+                data: 
+                "User: " + JSON.stringify(oldUser) + 
+                " updated to " + JSON.stringify(temporalUser)
+            };
+
+        case 'delete':
+            if (!window.confirm(`Realmente desea ELIMINAR el usuario identificado como ${temporalUser.document}`))
+                return {data: 'Procedimiento cancelado por el usuario'};
+
+            return deleteUser(temporalUser);
+    }    
 }
+
+
+const signin = async temporalUser => {
+    return await fetch(baseUrl + "/user/create", {
+        method: 'POST',
+        body: JSON.stringify(temporalUser),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(apiResponse => apiResponse.json())
+        .then(apiResponse => {
+            return {data: apiResponse}
+        })
+        .catch(error => {
+            console.error(error)
+            return false;
+        })
+}
+
+
+export const login = async (email, pass) => {
+    requestData = `{"document":"000000", "name":"name", "phone":"0000000000", "email":"${email}", "password":"${pass}"}`; 
+
+    return await fetch(baseUrl + "/user/login", {
+        method: 'POST',
+        body: requestData,
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(apiResponse => apiResponse.json())
+        .then(apiResponse => {
+            return {data: apiResponse}
+        })
+        .catch(error => {
+            console.error(error)
+            return false;
+        })
+}
+
+
+export const getUser = async userId => {
+    requestData = `{"id":0, "document":"${userId}", "name":"name", "phone":"0000000000", "email":"a@a.com", "password":"0000"}`;
+
+    return await fetch(baseUrl + "/user/read", {
+        method: 'POST',
+        body: requestData,
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(apiResponse => apiResponse.json())
+        .then(apiResponse => {
+            return {data: apiResponse}
+        })
+        .catch(error => {
+            console.error(error)
+            return false;
+        })
+}
+
+
+export const updateUser = async temporalUser => {
+    return await fetch(baseUrl + `/user/update?id=${temporalUser.id}`, {
+        method: 'PUT',
+        body: JSON.stringify(temporalUser),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(apiResponse => apiResponse.json())
+        .then(apiResponse => {
+            return {data: apiResponse}
+        })
+        .catch(error => {
+            console.error(error)
+            return false;
+        })
+}
+
+
+export const deleteUser = async temporalUser => {
+    temporalUser.password = '....';
+    return await fetch(baseUrl + '/user/delete', {
+        method: 'DELETE',
+        body: JSON.stringify(temporalUser),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(apiResponse => apiResponse.json())
+        .then(apiResponse => {
+            return {data: apiResponse}
+        })
+        .catch(error => {
+            console.error(error)
+            return false;
+        })
+}
+
 
 export function apiResponse(arg) {
     switch (arg) {
@@ -80,7 +191,7 @@ const getDataDependingRequest = (initialDate, finalDate, data) => {
 
     Object.keys(data).map(d => {
         temporalDate = Date.parse(data[d].date);
-        
+
         if(temporalDate >= initialDate && temporalDate <= finalDate)
             temporalData.push(data[d]);
     })
@@ -123,51 +234,3 @@ const getDataToTable = (dataResponse, itemsPerPage, numberPageToShow) => {
     return data;
 }
 
-
-export const userHandler = async (isAdmin, option, user, oldUser) => {
-    let response;
-
-    if(!isAdmin) {
-        response = await login(user.email, user.password);
-        return response;
-    }
-
-    switch (option) {
-        case 'send':
-            return {data: "newUser: " + JSON.stringify(user) + " saved!"};
-
-        case 'search':
-            response = await getUser(user.id);
-            return response;
-
-        case 'update':
-            if (!window.confirm(`Desea ACTUALIZAR el usuario identificado como ${oldUser.id}`))
-                return {data: 'Procedimiento cancelado por el usuario'};
-
-            return {
-                data: 
-                "User: " + JSON.stringify(oldUser) + 
-                " updated to " + JSON.stringify(user)
-            };
-
-        case 'delete':
-            if (!window.confirm(`Realmente desea ELIMINAR el usuario identificado como ${user.id}`))
-                return {data: 'Procedimiento cancelado por el usuario'};
-
-            return {data: "User: " + JSON.stringify(user) + " deleted!"};
-    }    
-}
-
-export async function getUser(id) {
-    return await fetch("./FakeApiLogin.json")
-        .then(apiResponse => apiResponse.json())
-        .then(response => {
-            for (let i = 0; i < response.length; i++) {
-                if (id === response[i].id.toString()) {
-                    return {data: response[i]};
-                }
-            }
-
-            return {data: false};
-        });
-}

@@ -9,7 +9,7 @@ export const UserForm = ({ isAdmin, request }) => {
 
     const [ userWasFound, setUserWasFound ] = useState(false);
     const [ id, setId ] = useState("");
-    const [ oldUser, setOldUser ] = useState("");
+    const [ userId, setUserId ] = useState("");
     const [ name, setName ] = useState("");
     const [ phone, setPhone ] = useState("");
     const [ email, setEmail ] = useState("");
@@ -19,7 +19,7 @@ export const UserForm = ({ isAdmin, request }) => {
     const [ sendButton, setSendButton ] = useState({text:'Enviar', class:'send'});
 
     const nameInputHandler = e => setName(e.target.value.replace(/[^A-Za-z\s]*$/, ''));
-    const idInputHandler = e => setId(e.target.value.replace(/[^0-9.]/g, '').replace(/(\.*)\./g, '$1'));
+    const userIdInputHandler = e => setUserId(e.target.value.replace(/[^0-9.]/g, '').replace(/(\.*)\./g, '$1'));
     const phoneInputHandler = e => setPhone(e.target.value.replace(/[^0-9.]/g, '').replace(/(\.*)\./g, '$1'));
     const emailInputHandler = e => setEmail(e.target.value);
     const passwordInputHandler = e => setPassword(e.target.value);
@@ -28,6 +28,10 @@ export const UserForm = ({ isAdmin, request }) => {
     const setDefaultValuesInFields = _ => {
         setId(() => {
             if(_) return _.id; 
+            return '';
+        });
+        setUserId(() => {
+            if(_) return _.document; 
             return '';
         });
         setName(() => {
@@ -49,7 +53,7 @@ export const UserForm = ({ isAdmin, request }) => {
 
     const handleSubmit = async (e) => {
         let option = e.target.id;
-        let formData = {id, name, phone, email, password, confirmPassword};
+        let formData = {id, document: userId, name, phone, email, password, confirmPassword};
 
         switch (option) {
             case 'send':
@@ -90,7 +94,7 @@ export const UserForm = ({ isAdmin, request }) => {
         }
 
         let user = getUserFromForm(formData);
-        let response = await request(isAdmin, option, user, oldUser);
+        let response = await request(isAdmin, option, user);
 
         if(isAdmin)
             callback(response);
@@ -99,6 +103,7 @@ export const UserForm = ({ isAdmin, request }) => {
 
     const getUserFromForm = formData => {
         let user = {};
+        
         (Object.keys(formData)).map(item => {
             if(item !== 'confirmPassword')
                 user[item] = formData[item];
@@ -112,10 +117,14 @@ export const UserForm = ({ isAdmin, request }) => {
 
     const sendUser = response => {
         const { data } = response;
-        if(!data) return;
+        
+        if(!data){
+            alert('No fue posible realizar la operación. Usuario registrado!');
+            return;
+        }
 
         if(isAdmin)
-            alert(response.data);
+            alert(data);
 
         clear();
     };
@@ -124,7 +133,6 @@ export const UserForm = ({ isAdmin, request }) => {
     const searchUser = async response => {
         const { data } = response;
         if(data){
-            setOldUser(data);
             setDefaultValuesInFields(data);
             setUserWasFound(true);
             return;
@@ -160,13 +168,13 @@ export const UserForm = ({ isAdmin, request }) => {
     useEffect(() => {
         if(!isAdmin) return;
 
-        if(id != '' && name == '' && phone == '' && email == '' && password == '' && confirmPassword == ''){
+        if(userId != '' && name == '' && phone == '' && email == '' && password == '' && confirmPassword == ''){
             setSendButton({text:'Buscar', class:'search'});
             setMessage('');
         }
         else
             setSendButton({text:'Enviar', class:'send'});
-    }, [id, name, phone, email, password, confirmPassword])
+    }, [userId, name, phone, email, password, confirmPassword])
 
 
     return (
@@ -185,8 +193,8 @@ export const UserForm = ({ isAdmin, request }) => {
                         placeholder=" Ingrese cédula"
                         className={styles.userFormInput}
                         id='userId'
-                        onChange={e => idInputHandler(e)}
-                        value={id}
+                        onChange={e => userIdInputHandler(e)}
+                        value={userId || ''}
                     />
                     <label>Nombre</label>
                     <input
@@ -195,7 +203,7 @@ export const UserForm = ({ isAdmin, request }) => {
                         className={styles.userFormInput}
                         id='name'
                         onChange={e => nameInputHandler(e)}
-                        value={name}
+                        value={name || ''}
                     />
                     <label>Numero celular</label>
                     <input
@@ -204,7 +212,7 @@ export const UserForm = ({ isAdmin, request }) => {
                         className={styles.userFormInput}
                         id='phone'
                         onChange={e => phoneInputHandler(e)}
-                        value={phone}
+                        value={phone || ''}
                     />
                 </div>
                 <label>Email</label>
@@ -215,7 +223,7 @@ export const UserForm = ({ isAdmin, request }) => {
                     className={styles.userFormInput}
                     id='email'
                     onChange={e => emailInputHandler(e)}
-                    value={email}
+                    value={email || ''}
                 />
                 <label>Contraseña</label>
                 <input
@@ -224,7 +232,7 @@ export const UserForm = ({ isAdmin, request }) => {
                     className={styles.userFormInput}
                     id='password'
                     onChange={e => passwordInputHandler(e)}
-                    value={password}
+                    value={password || ''}
                 />
                 <div className={`singInContainer ${styles.inputSinginContainer}`}>
                     <label>Confirmar Contraseña</label>

@@ -4,7 +4,7 @@ export const userValidator = async (isAdmin, userData) => {
     userValidatorResponse = [];
 
     if(isAdmin) {
-        setUserValidatorResponse(await checkThatTheIdIsNotEmpty(userData.id));
+        setUserValidatorResponse(await checkThatTheIdIsNotEmpty(userData.document));
         setUserValidatorResponse(await checkThatTheNameIsNotEmpty(userData.name));
         setUserValidatorResponse(await checkThatThePhoneIsNotEmpty(userData.phone));
     }
@@ -21,10 +21,11 @@ export const userValidator = async (isAdmin, userData) => {
     return await getUserValidatorResponse();
 }
 
-const checkThatTheIdIsNotEmpty = id => {
-    if(id) return "";
+const checkThatTheIdIsNotEmpty = document => {
+    if(document.length >= 10)
+        return "";
 
-    return "La 'Identificación' no puede ser vacía";
+    return "'Identificación' no puede estar vacía ni tener menos de 10 dígitos";
 };
 
 const checkThatTheNameIsNotEmpty = name => {

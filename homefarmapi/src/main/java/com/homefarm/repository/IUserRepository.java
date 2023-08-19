@@ -2,17 +2,19 @@ package com.homefarm.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
 
 import com.homefarm.domain.User;
+import com.homefarm.domain.UserDTO;
 
-@Repository
-public interface IUserRepository extends JpaRepository<User, String> {
+public interface IUserRepository extends JpaRepository<User, Integer> {
 	
-	public User findByEmail(String email);
-//	public String nativeQuery = "SELECT * FROM User";
-//    
-//    @Query(value = nativeQuery, nativeQuery = true)
-//    public User findUser();    
+	@Query ("SELECT new com.homefarm.domain.UserDTO (u.id, u.document, u.name, u.phone, u.email, u.password, ut.id, ut.description) FROM User u INNER JOIN UserType ut ON u.userType.id = ut.id WHERE u.id = ?1")
+	public UserDTO findById(int id);
+	
+	@Query ("SELECT new com.homefarm.domain.UserDTO (u.id, u.document, u.name, u.phone, u.email, u.password, ut.id, ut.description) FROM User u INNER JOIN UserType ut ON u.userType.id = ut.id WHERE u.email = ?1")
+	public UserDTO seachByEmail(String email); 
+	
+	@Query ("SELECT new com.homefarm.domain.UserDTO (u.id, u.document, u.name, u.phone, u.email, u.password, ut.id, ut.description) FROM User u INNER JOIN UserType ut ON u.userType.id = ut.id WHERE u.document = ?1")
+	public UserDTO findByDocument(String document);
 	
 }

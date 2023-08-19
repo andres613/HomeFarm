@@ -7,8 +7,8 @@ const cookies = new Cookies();
 export const UserAdmin = () => {
     const isAdmin = cookies.get('userType') == "admin" ? true : false;
 
-    const request = (isAdminModule, option, newUser, oldUser) => {
-        return userHandler(isAdminModule, option, newUser, oldUser);
+    const request = (isAdminModule, option, newUser) => {
+        return userHandler(isAdminModule, option, newUser);
     }
 
     return (
